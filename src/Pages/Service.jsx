@@ -355,7 +355,7 @@ function Service() {
             </div>
 
             <h1 className="header-name">
-              <span className="animated-text">Mohamed Ahmed</span>
+              <span className="animated-text">Coach Met3b</span>
             </h1>
         </header>
           {/* --------- */}

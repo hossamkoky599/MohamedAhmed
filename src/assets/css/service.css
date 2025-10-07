@@ -669,8 +669,8 @@
 }
 
 .header-logo {
-  width: 48px;
-  height: 48px;
+  width: 63px;
+  height: 63px;
   object-fit: contain;
   border-radius: 50%;
   box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
@@ -773,4 +773,171 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+* Modern Animated Brand Name Logo Styles */
+
+.header-name {
+  position: relative;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 0;
+}
+
+.animated-text {
+  background: linear-gradient(
+    45deg,
+    #667eea 0%,
+    #764ba2 25%,
+    #f093fb 50%,
+    #4facfe 75%,
+    #667eea 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 4s ease infinite, textGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+}
+
+/* Gradient Animation */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glow Animation */
+@keyframes textGlow {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.5))
+            drop-shadow(0 0 10px rgba(118, 75, 162, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 20px rgba(240, 147, 251, 0.8))
+            drop-shadow(0 0 30px rgba(79, 172, 254, 0.5));
+  }
+}
+
+/* Hover Effect */
+.animated-text:hover {
+  animation: gradientFlow 2s ease infinite, textGlow 1s ease-in-out infinite alternate, scaleUp 0.3s ease forwards;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/* Letter Spacing Animation on Hover */
+.animated-text:hover {
+  letter-spacing: 3px;
+  transition: letter-spacing 0.3s ease;
+}
+
+/* Add a subtle before/after decoration */
+.animated-text::before {
+  content: '●';
+  position: absolute;
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.5em;
+  animation: pulse 2s ease-in-out infinite;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.animated-text::after {
+  content: '●';
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.5em;
+  animation: pulse 2s ease-in-out infinite;
+  animation-delay: 1s;
+  background: linear-gradient(45deg, #f093fb, #4facfe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-name {
+    font-size: 1.5rem;
+  }
+  
+  .animated-text::before,
+  .animated-text::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-name {
+    font-size: 1.2rem;
+  }
+}
+
+/* Dark theme variant */
+.dark .animated-text {
+  background: linear-gradient(
+    45deg,
+    #00f5ff 0%,
+    #fc00ff 25%,
+    #00f5ff 50%,
+    #fc00ff 75%,
+    #00f5ff 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Light theme variant */
+.light .animated-text {
+  background: linear-gradient(
+    45deg,
+    #667eea 0%,
+    #764ba2 25%,
+    #f093fb 50%,
+    #4facfe 75%,
+    #667eea 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
