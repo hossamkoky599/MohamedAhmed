@@ -50,12 +50,13 @@
   background: var(--bg-primary);
   transition: var(--transition);
   position: relative;
+  padding-top: 5px;
 }
 
 /* Control Buttons */
 .control-buttons {
   position: fixed;
-  top: 20px;
+  top: 90px;
   right: 20px;
   z-index: 1000;
   display: flex;
@@ -94,10 +95,11 @@
 }
 
 /* Hero Section */
-.hero-section {
+.shero-section {
   position: relative;
   overflow: hidden;
-  padding: 120px 20px 80px;
+  padding: 80px 20px 80px;
+  margin-top: 80px;
 }
 
 .hero-overlay {
@@ -141,7 +143,7 @@
   50% { transform: translate(30px, 30px) scale(1.1); }
 }
 
-.hero-content {
+.shero-content {
   position: relative;
   z-index: 2;
   max-width: 900px;
@@ -649,7 +651,7 @@
 /* === Top Header === */
 .service-header {
   position: fixed;
-  top: 0;
+  top: 80;
   left: 0;
   width: 100%;
   padding: 15px 25px;
@@ -657,7 +659,7 @@
   justify-content: center;
   align-items: center;
   background: transparent;
-  z-index: 1000;
+  z-index: 999;
 }
 
 /* Logo (top-left) */

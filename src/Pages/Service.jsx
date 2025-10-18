@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { Calculator, Activity, Apple, Zap, TrendingUp, Moon, Sun, Languages } from 'lucide-react';
+import { Calculator, Activity, Apple, Zap, TrendingUp } from 'lucide-react';
+import { useOutletContext } from 'react-router';
 import "../assets/css/service.css"
 import Preloader from "./Preloader";
+
 function Service() {
-    const [activeCalculator, setActiveCalculator] = useState('alternatives');
-  const [theme, setTheme] = useState('dark');
-  const [language, setLanguage] = useState('en');
+  // Get language from outlet context, default to 'en' if not available
+  const context = useOutletContext();
+  const language = context?.language || 'en';
+  
+  const [activeCalculator, setActiveCalculator] = useState('alternatives');
   
   // Alternatives Calculator State
   const [foodType, setFoodType] = useState('');
@@ -171,9 +175,7 @@ function Service() {
       'White Bread': { calories: 265, protein: 9, carbs: 49, fat: 3.2, ar: 'خبز أبيض' },
       'Pita Bread': { calories: 275, protein: 9, carbs: 55, fat: 1.2, ar: 'خبز بيتا' },
       'Pasta': { calories: 131, protein: 5, carbs: 25, fat: 1.1, ar: 'معكرونة' },
-      'Couscous': { calories: 112, protein: 3.8, carbs: 23, fat: 0.2, ar: 'كسكسي' },
-      'Corn': { calories: 86, protein: 3.3, carbs: 19, fat: 1.4, ar: 'ذرة' },
-      'Barley': { calories: 123, protein: 2.3, carbs: 28, fat: 0.4, ar: 'شعير' }
+      'Couscous': { calories: 112, protein: 3.8, carbs: 23, fat: 0.2, ar: 'كسكسي' }
     },
     healthyFat: {
       'Avocado': { calories: 160, protein: 2, carbs: 8.5, fat: 14.7, ar: 'أفوكادو' },
@@ -184,103 +186,63 @@ function Service() {
       'Olive Oil': { calories: 884, protein: 0, carbs: 0, fat: 100, ar: 'زيت زيتون' },
       'Coconut Oil': { calories: 862, protein: 0, carbs: 0, fat: 100, ar: 'زيت جوز الهند' },
       'Peanut Butter': { calories: 588, protein: 25, carbs: 20, fat: 50, ar: 'زبدة فول سوداني' },
-      'Almond Butter': { calories: 614, protein: 21, carbs: 19, fat: 56, ar: 'زبدة اللوز' },
-      'Chia Seeds': { calories: 486, protein: 17, carbs: 42, fat: 31, ar: 'بذور الشيا' },
-      'Flax Seeds': { calories: 534, protein: 18, carbs: 29, fat: 42, ar: 'بذور الكتان' },
-      'Sunflower Seeds': { calories: 584, protein: 21, carbs: 20, fat: 51, ar: 'بذور دوار الشمس' }
+      'Almond Butter': { calories: 614, protein: 21, carbs: 19, fat: 56, ar: 'زبدة اللوز' }
     },
     legumes: {
       'Lentils': { calories: 116, protein: 9, carbs: 20, fat: 0.4, ar: 'عدس' },
-      'Red Lentils': { calories: 116, protein: 9, carbs: 20, fat: 0.4, ar: 'عدس أحمر' },
       'Chickpeas': { calories: 164, protein: 8.9, carbs: 27, fat: 2.6, ar: 'حمص' },
       'Black Beans': { calories: 132, protein: 8.9, carbs: 24, fat: 0.5, ar: 'فاصوليا سوداء' },
-      'Kidney Beans': { calories: 127, protein: 8.7, carbs: 23, fat: 0.5, ar: 'فاصوليا حمراء' },
-      'White Beans': { calories: 139, protein: 9.7, carbs: 25, fat: 0.4, ar: 'فاصوليا بيضاء' },
-      'Pinto Beans': { calories: 143, protein: 9, carbs: 26, fat: 0.7, ar: 'فاصوليا بينتو' },
-      'Green Peas': { calories: 81, protein: 5, carbs: 14, fat: 0.4, ar: 'بازلاء خضراء' },
-      'Split Peas': { calories: 118, protein: 8.3, carbs: 21, fat: 0.4, ar: 'بازلاء مجروشة' },
-      'Soybeans': { calories: 173, protein: 17, carbs: 10, fat: 9, ar: 'فول الصويا' },
-      'Fava Beans': { calories: 110, protein: 7.6, carbs: 19, fat: 0.4, ar: 'فول مدمس' }
+      'Kidney Beans': { calories: 127, protein: 8.7, carbs: 23, fat: 0.5, ar: 'فاصوليا حمراء' }
     },
     fruit: {
       'Banana': { calories: 89, protein: 1.1, carbs: 23, fat: 0.3, ar: 'موز' },
       'Apple': { calories: 52, protein: 0.3, carbs: 14, fat: 0.2, ar: 'تفاح' },
       'Orange': { calories: 47, protein: 0.9, carbs: 12, fat: 0.1, ar: 'برتقال' },
       'Mango': { calories: 60, protein: 0.8, carbs: 15, fat: 0.4, ar: 'مانجو' },
-      'Strawberries': { calories: 32, protein: 0.7, carbs: 8, fat: 0.3, ar: 'فراولة' },
-      'Blueberries': { calories: 57, protein: 0.7, carbs: 14, fat: 0.3, ar: 'توت أزرق' },
-      'Grapes': { calories: 69, protein: 0.7, carbs: 18, fat: 0.2, ar: 'عنب' },
-      'Watermelon': { calories: 30, protein: 0.6, carbs: 8, fat: 0.2, ar: 'بطيخ' },
-      'Pineapple': { calories: 50, protein: 0.5, carbs: 13, fat: 0.1, ar: 'أناناس' },
-      'Papaya': { calories: 43, protein: 0.5, carbs: 11, fat: 0.3, ar: 'بابايا' },
-      'Kiwi': { calories: 61, protein: 1.1, carbs: 15, fat: 0.5, ar: 'كيوي' },
-      'Dates': { calories: 277, protein: 1.8, carbs: 75, fat: 0.2, ar: 'تمر' },
-      'Figs': { calories: 74, protein: 0.8, carbs: 19, fat: 0.3, ar: 'تين' },
-      'Pomegranate': { calories: 83, protein: 1.7, carbs: 19, fat: 1.2, ar: 'رمان' }
+      'Strawberries': { calories: 32, protein: 0.7, carbs: 8, fat: 0.3, ar: 'فراولة' }
     },
     vegetable: {
       'Broccoli': { calories: 34, protein: 2.8, carbs: 7, fat: 0.4, ar: 'بروكلي' },
       'Spinach': { calories: 23, protein: 2.9, carbs: 3.6, fat: 0.4, ar: 'سبانخ' },
       'Carrots': { calories: 41, protein: 0.9, carbs: 10, fat: 0.2, ar: 'جزر' },
-      'Tomatoes': { calories: 18, protein: 0.9, carbs: 3.9, fat: 0.2, ar: 'طماطم' },
-      'Cucumber': { calories: 15, protein: 0.7, carbs: 3.6, fat: 0.1, ar: 'خيار' },
-      'Bell Peppers': { calories: 31, protein: 1, carbs: 6, fat: 0.3, ar: 'فلفل رومي' },
-      'Zucchini': { calories: 17, protein: 1.2, carbs: 3.1, fat: 0.3, ar: 'كوسة' },
-      'Cauliflower': { calories: 25, protein: 1.9, carbs: 5, fat: 0.3, ar: 'قرنبيط' },
-      'Lettuce': { calories: 15, protein: 1.4, carbs: 2.9, fat: 0.2, ar: 'خس' },
-      'Eggplant': { calories: 25, protein: 1, carbs: 6, fat: 0.2, ar: 'باذنجان' },
-      'Green Beans': { calories: 31, protein: 1.8, carbs: 7, fat: 0.2, ar: 'فاصوليا خضراء' },
-      'Cabbage': { calories: 25, protein: 1.3, carbs: 6, fat: 0.1, ar: 'ملفوف' },
-      'Mushrooms': { calories: 22, protein: 3.1, carbs: 3.3, fat: 0.3, ar: 'فطر' },
-      'Onions': { calories: 40, protein: 1.1, carbs: 9, fat: 0.1, ar: 'بصل' }
+      'Tomatoes': { calories: 18, protein: 0.9, carbs: 3.9, fat: 0.2, ar: 'طماطم' }
     },
     milk: {
       'Whole Milk': { calories: 61, protein: 3.2, carbs: 4.8, fat: 3.3, ar: 'حليب كامل الدسم' },
       'Low-Fat Milk': { calories: 42, protein: 3.4, carbs: 5, fat: 1, ar: 'حليب قليل الدسم' },
-      'Skim Milk': { calories: 34, protein: 3.4, carbs: 5, fat: 0.1, ar: 'حليب خالي الدسم' },
-      'Almond Milk': { calories: 17, protein: 0.6, carbs: 1.5, fat: 1.1, ar: 'حليب اللوز' },
-      'Soy Milk': { calories: 54, protein: 3.3, carbs: 6, fat: 1.8, ar: 'حليب الصويا' },
-      'Coconut Milk': { calories: 230, protein: 2.3, carbs: 6, fat: 24, ar: 'حليب جوز الهند' },
-      'Oat Milk': { calories: 47, protein: 1, carbs: 7.6, fat: 1.5, ar: 'حليب الشوفان' },
-      'Buffalo Milk': { calories: 97, protein: 3.8, carbs: 5.2, fat: 6.9, ar: 'حليب الجاموس' },
-      'Goat Milk': { calories: 69, protein: 3.6, carbs: 4.5, fat: 4.1, ar: 'حليب الماعز' },
-      'Camel Milk': { calories: 50, protein: 3, carbs: 4.4, fat: 2.4, ar: 'حليب الإبل' }
+      'Skim Milk': { calories: 34, protein: 3.4, carbs: 5, fat: 0.1, ar: 'حليب خالي الدسم' }
     }
   };
 
- const calculateAlternatives = () => {
-  if (!foodType || !selectedFood || !foodAmount || !alternativeFood) {
-    alert(t.fillAllFields);
-    return;
-  }
+  const calculateAlternatives = () => {
+    if (!foodType || !selectedFood || !foodAmount || !alternativeFood) {
+      alert(t.fillAllFields);
+      return;
+    }
 
-  const amount = parseFloat(foodAmount);
-  const food1 = foodDatabase[foodType][selectedFood];
-  const food2 = foodDatabase[foodType][alternativeFood];
-  if (!food1 || !food2) return;
+    const amount = parseFloat(foodAmount);
+    const food1 = foodDatabase[foodType][selectedFood];
+    const food2 = foodDatabase[foodType][alternativeFood];
+    if (!food1 || !food2) return;
 
-  // Calories for original food
-  const originalCalories = (food1.calories * amount) / 100;
+    const originalCalories = (food1.calories * amount) / 100;
+    const equivalentGrams = (originalCalories / food2.calories) * 100;
 
-  // Equivalent grams for same calories
-  const equivalentGrams = (originalCalories / food2.calories) * 100;
+    const result = {
+      original: {
+        name: language === 'ar' ? food1.ar : selectedFood,
+        amount: `${amount.toFixed(1)} g`,
+        calories: `${originalCalories.toFixed(1)} cal`,
+      },
+      alternative: {
+        name: language === 'ar' ? food2.ar : alternativeFood,
+        amount: `${equivalentGrams.toFixed(1)} g`,
+        calories: `${originalCalories.toFixed(1)} cal`,
+      },
+    };
 
-  const result = {
-    original: {
-      name: language === 'ar' ? food1.ar : selectedFood,
-      amount: `${amount.toFixed(1)} g`,
-      calories: `${originalCalories.toFixed(1)} cal`,
-    },
-    alternative: {
-      name: language === 'ar' ? food2.ar : alternativeFood,
-      amount: `${equivalentGrams.toFixed(1)} g`,
-      calories: `${originalCalories.toFixed(1)} cal`,
-    },
+    setComparisonResult(result);
   };
-
-  setComparisonResult(result);
-};
-
 
   const calculateCalories = () => {
     if (!age || !weight || !height || !activityLevel || !dietTarget) {
@@ -325,40 +287,19 @@ function Service() {
       target: finalCalories
     });
   };
+
   return (
-      <>
-    <div className={`app-container ${theme}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
-        <Preloader imageSrc="/images/image.png" />
-      {/* Control Buttons */}
-      <div className="control-buttons">
-        <button className="control-btn" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-          {theme === 'dark' ? <Sun className="icon" /> : <Moon className="icon" />}
-        </button>
-        <button className="control-btn" onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}>
-          <Languages className="icon" />
-          <span className="lang-text">{language === 'en' ? 'AR' : 'EN'}</span>
-        </button>
-      </div>
+    <div className="app-container" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      
 
       {/* Hero Section */}
-      <div className="hero-section">
+      <div className="shero-section">
         <div className="hero-overlay"></div>
         <div className="hero-bg-effects">
           <div className="bg-blob blob-1"></div>
           <div className="bg-blob blob-2"></div>
         </div>
-        <div className="hero-content">
-          {/* --------- */}
-          <header className="service-header">
-            <div className="header-left">
-              <img src="/images/image.png" alt="Logo" className="header-logo" />
-            </div>
-
-            <h1 className="header-name">
-              <span className="animated-text">Coach Met3b</span>
-            </h1>
-        </header>
-          {/* --------- */}
+        <div className="shero-content">
           <div className="hero-icon">
             <Apple className="icon-large" />
           </div>
@@ -472,43 +413,43 @@ function Service() {
             <button className="calculate-btn primary" onClick={calculateAlternatives}>
               {t.calculateComparison}
             </button>
+
             {comparisonResult && (
-  <div className="results-grid">
-    <div className="result-card original">
-      <h3 className="result-title">{comparisonResult.original.name}</h3>
-      <div className="result-details">
-        <div className="result-row">
-          <span>{t.amount}</span>
-          <span className="result-value">{comparisonResult.original.amount}</span>
-        </div>
-        <div className="result-row">
-          <span>{t.calories}</span>
-          <span className="result-value">{comparisonResult.original.calories}</span>
-        </div>
-      </div>
-    </div>
+              <>
+                <div className="results-grid">
+                  <div className="result-card original">
+                    <h3 className="result-title">{comparisonResult.original.name}</h3>
+                    <div className="result-details">
+                      <div className="result-row">
+                        <span>{t.amount}</span>
+                        <span className="result-value">{comparisonResult.original.amount}</span>
+                      </div>
+                      <div className="result-row">
+                        <span>{t.calories}</span>
+                        <span className="result-value">{comparisonResult.original.calories}</span>
+                      </div>
+                    </div>
+                  </div>
 
-    <div className="result-card alternative">
-      <h3 className="result-title">{comparisonResult.alternative.name}</h3>
-      <div className="result-details">
-        <div className="result-row">
-          <span>{t.amount}</span>
-          <span className="result-value">{comparisonResult.alternative.amount}</span>
-        </div>
-        <div className="result-row">
-          <span>{t.calories}</span>
-          <span className="result-value">{comparisonResult.alternative.calories}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-)}
-{comparisonResult && (
-  <p className="result-note" style={{ textAlign: "center", marginTop: "16px" }}>
-    {comparisonResult.original.amount} {comparisonResult.original.name} ≈ {comparisonResult.alternative.amount} {comparisonResult.alternative.name}
-  </p>
-)}
-
+                  <div className="result-card alternative">
+                    <h3 className="result-title">{comparisonResult.alternative.name}</h3>
+                    <div className="result-details">
+                      <div className="result-row">
+                        <span>{t.amount}</span>
+                        <span className="result-value">{comparisonResult.alternative.amount}</span>
+                      </div>
+                      <div className="result-row">
+                        <span>{t.calories}</span>
+                        <span className="result-value">{comparisonResult.alternative.calories}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p className="result-note" style={{ textAlign: "center", marginTop: "16px" }}>
+                  {comparisonResult.original.amount} {comparisonResult.original.name} ≈ {comparisonResult.alternative.amount} {comparisonResult.alternative.name}
+                </p>
+              </>
+            )}
           </div>
         )}
 
@@ -636,8 +577,7 @@ function Service() {
         )}
       </div>
     </div>
-    </>
   );
 }
 
-export default Service
+export default Service;
