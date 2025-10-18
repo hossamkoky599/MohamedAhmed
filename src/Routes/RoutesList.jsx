@@ -18,7 +18,7 @@ export default function RoutesList() {
               <Route path="/services" element={<Service />}/>
               <Route path='/about' element={<About/>}/>
               <Route path='/payments' element={<Payments/>}/>
-              <Route path='/plans' element={<TrainingPlans/>}/>
+              {/* <Route path='/plans' element={<TrainingPlans/>}/> */}
               <Route path='/plans2' element={<TrainingPlans_2/>}/>
           </Route>
       </Routes>
